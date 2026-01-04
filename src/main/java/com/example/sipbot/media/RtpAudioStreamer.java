@@ -40,6 +40,7 @@ public class RtpAudioStreamer {
                     .handler(new io.netty.channel.SimpleChannelInboundHandler<DatagramPacket>() {
                         @Override
                         protected void channelRead0(io.netty.channel.ChannelHandlerContext ctx, DatagramPacket msg) {
+                            // 播放流程无需处理入站数据。
                             // No inbound handling required for playback.
                         }
                     });
@@ -95,6 +96,8 @@ public class RtpAudioStreamer {
                 }
                 int payloadSize = Math.min(160, audio.length - cursor);
                 byte[] packet = new byte[12 + payloadSize];
+                packet[0] = (byte) 0x80; // RTP 版本 2
+                packet[1] = 0; // 负载类型 0（PCMU）
                 packet[0] = (byte) 0x80; // V2
                 packet[1] = 0; // PT=0 (PCMU)
                 packet[2] = (byte) ((sequence >> 8) & 0xFF);
