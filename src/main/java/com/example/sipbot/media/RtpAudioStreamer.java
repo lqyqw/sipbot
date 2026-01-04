@@ -41,6 +41,7 @@ public class RtpAudioStreamer {
                         @Override
                         protected void channelRead0(io.netty.channel.ChannelHandlerContext ctx, DatagramPacket msg) {
                             // 播放流程无需处理入站数据。
+                            // No inbound handling required for playback.
                         }
                     });
 
@@ -97,6 +98,8 @@ public class RtpAudioStreamer {
                 byte[] packet = new byte[12 + payloadSize];
                 packet[0] = (byte) 0x80; // RTP 版本 2
                 packet[1] = 0; // 负载类型 0（PCMU）
+                packet[0] = (byte) 0x80; // V2
+                packet[1] = 0; // PT=0 (PCMU)
                 packet[2] = (byte) ((sequence >> 8) & 0xFF);
                 packet[3] = (byte) (sequence & 0xFF);
                 packet[4] = (byte) ((timestamp >> 24) & 0xFF);

@@ -29,7 +29,7 @@ public final class MuLawCodec {
         sample = (short) (sample + BIAS);
         int exponent = 7;
         for (int expMask = 0x4000; (sample & expMask) == 0 && exponent > 0; exponent--, expMask >>= 1) {
-            // 通过右移寻找指数位。
+            // Shift to find exponent.
         }
         int mantissa = (sample >> ((exponent == 0) ? 4 : (exponent + 3))) & 0x0F;
         byte muLaw = (byte) (~(sign | (exponent << 4) | mantissa));

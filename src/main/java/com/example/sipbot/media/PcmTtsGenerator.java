@@ -26,6 +26,8 @@ public class PcmTtsGenerator {
         double twoPi = 2 * Math.PI;
         int samplesPerTone = (int) (SAMPLE_RATE * 0.25); // 每个字符 250ms
         int gapSamples = (int) (SAMPLE_RATE * 0.05); // 字符间短暂停顿
+        int samplesPerTone = (int) (SAMPLE_RATE * 0.25); // 250ms per character
+        int gapSamples = (int) (SAMPLE_RATE * 0.05); // small pause between characters
 
         for (char c : text.toCharArray()) {
             double frequency = 400 + (c % 32) * 20;
