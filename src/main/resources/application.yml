@@ -1,0 +1,17 @@
+sip:
+  local-address: 192.168.56.1
+  port: 5060
+  transport: udp
+  rtp-port: 4000
+  domain: 192.168.56.10
+  username: 1000
+  password: yourFreeSwitchPassword
+  register-ttl-seconds: 3600
+  audio-file: audio/demo.wav
+  tts-text: "Welcome to the Java SIP bot"
+  hangup-after-playback: true
+
+logging:
+  level:
+    root: INFO
+    gov.nist: WARN

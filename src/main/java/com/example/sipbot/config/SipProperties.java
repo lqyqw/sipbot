@@ -1,0 +1,142 @@
+package com.example.sipbot.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix = "sip")
+public class SipProperties {
+
+    /**
+     * IP address reachable by FreeSWITCH for SIP and RTP.
+     */
+    private String localAddress = "127.0.0.1";
+
+    /**
+     * SIP listening port.
+     */
+    private int port = 5060;
+
+    /**
+     * UDP or TCP.
+     */
+    private String transport = "udp";
+
+    /**
+     * RTP port used in the SDP answer and as the local bind for Netty.
+     */
+    private int rtpPort = 4000;
+
+    /**
+     * Registrar or FreeSWITCH domain.
+     */
+    private String domain = "127.0.0.1";
+
+    private String username = "1000";
+    private String password = "super-secret";
+
+    /**
+     * Seconds before refresh.
+     */
+    private int registerTtlSeconds = 3600;
+
+    /**
+     * File system path to the WAV file played after answering.
+     */
+    private String audioFile = "audio/hello.wav";
+
+    /**
+     * Text rendered as a simple synthesized tone sequence when no WAV is configured.
+     */
+    private String ttsText = "Welcome to the Java SIP bot";
+
+    private boolean hangupAfterPlayback = true;
+
+    public String getLocalAddress() {
+        return localAddress;
+    }
+
+    public void setLocalAddress(String localAddress) {
+        this.localAddress = localAddress;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public String getTransport() {
+        return transport;
+    }
+
+    public void setTransport(String transport) {
+        this.transport = transport;
+    }
+
+    public int getRtpPort() {
+        return rtpPort;
+    }
+
+    public void setRtpPort(int rtpPort) {
+        this.rtpPort = rtpPort;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getRegisterTtlSeconds() {
+        return registerTtlSeconds;
+    }
+
+    public void setRegisterTtlSeconds(int registerTtlSeconds) {
+        this.registerTtlSeconds = registerTtlSeconds;
+    }
+
+    public String getAudioFile() {
+        return audioFile;
+    }
+
+    public void setAudioFile(String audioFile) {
+        this.audioFile = audioFile;
+    }
+
+    public String getTtsText() {
+        return ttsText;
+    }
+
+    public void setTtsText(String ttsText) {
+        this.ttsText = ttsText;
+    }
+
+    public boolean isHangupAfterPlayback() {
+        return hangupAfterPlayback;
+    }
+
+    public void setHangupAfterPlayback(boolean hangupAfterPlayback) {
+        this.hangupAfterPlayback = hangupAfterPlayback;
+    }
+}
