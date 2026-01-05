@@ -15,6 +15,7 @@ import javax.sip.address.Address;
 import javax.sip.address.AddressFactory;
 import javax.sip.address.SipURI;
 import javax.sip.header.*;
+import javax.sip.message.MessageFactory;
 import javax.sip.message.Request;
 import javax.sip.message.Response;
 import java.nio.charset.StandardCharsets;
@@ -95,7 +96,7 @@ public class SipAgent implements SipListener {
         }
     }
 
-    private void sendRegister(AuthorizationHeader authHeader) throws ParseException, InvalidArgumentException, TransactionUnavailableException {
+    private void sendRegister(AuthorizationHeader authHeader) throws ParseException, InvalidArgumentException, SipException {
         SipURI requestUri = addressFactory.createSipURI(properties.getUsername(), properties.getDomain());
         Address fromAddress = addressFactory.createAddress(requestUri);
         FromHeader fromHeader = headerFactory.createFromHeader(fromAddress, Long.toHexString(System.nanoTime()));
